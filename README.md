@@ -1,1 +1,2 @@
-# Mini-Projects-on-ML
+ABOUT
+Basic and simple working models on Machine Learning 
