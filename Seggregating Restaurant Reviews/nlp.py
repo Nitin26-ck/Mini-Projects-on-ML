@@ -5,7 +5,7 @@ Created on Tue Jul 28 13:22:07 2020
 @author: Nitin
 """
 
-
+#importing modules and dataset
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -13,6 +13,7 @@ import pandas as pd
 # Importing the dataset
 dataset = pd.read_csv('E:/Machine Learning/P14-Part7-Natural-Language-Processing/P14-Part7-Natural-Language-Processing/Section 33 - Natural Language Processing/Python/Restaurant_Reviews.tsv',delimiter='\t',quoting=3)
 
+#natural language processing
 import re
 import nltk
 nltk.download('stopwords')
@@ -27,7 +28,8 @@ for i in range(0,1000):
     review = [ps.stem(word) for word in review if not word in set (stopwords.words('english'))]
     review = ' '.join(review)
     corpus.append(review)
-    
+ 
+
 from sklearn.feature_extraction.text import CountVectorizer
 cv = CountVectorizer(max_features=1500)
 x = cv.fit_transform(corpus).toarray()
