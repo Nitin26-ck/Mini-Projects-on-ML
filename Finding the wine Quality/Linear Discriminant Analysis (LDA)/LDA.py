@@ -5,7 +5,7 @@ Created on Sat Aug  8 00:02:07 2020
 @author: Nitin
 """
 
-
+#importing modules and dataset
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -14,6 +14,7 @@ dataset = pd.read_csv('E:/Machine Learning/P14-Part9-Dimensionality-Reduction/P1
 x= dataset.iloc[:,0:13].values
 y= dataset.iloc[:, 13].values
 
+#data-preprocessing
 from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=1/3, random_state=0)
 
@@ -22,20 +23,24 @@ sc_x = StandardScaler()
 x_train=sc_x.fit_transform(x_train)
 x_test=sc_x.fit_transform(x_test)
 
+#LDA
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis as LDA
 lda = LDA(n_components=2)
 x_train = lda.fit_transform(x_train,y_train)
 x_test = lda.transform(x_test)
 
+#logistic regression
 from sklearn.linear_model import LogisticRegression
 classifier = LogisticRegression(random_state=0)
 classifier.fit(x_train,y_train)
 
 y_pred = classifier.predict(x_test)
 
+#confusion matrix
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
 
+#plot
 from matplotlib.colors import ListedColormap
 x_set,y_set = x_train,y_train
 x1, x2 = np.meshgrid(np.arange(start = x_set[:, 0].min() - 1, stop = x_set[:, 0].max() + 1, step = 0.01),
